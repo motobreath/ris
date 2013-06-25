@@ -1,49 +1,86 @@
-<?php echo $this->doctype(); ?>
-
-<html lang="en">
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
     <head>
-        <meta charset="utf-8">
-        <?php echo $this->headTitle('ZF2 '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <?php echo $this->headLink(); ?>
+    <link rel="stylesheet" href="/css/style.css">
+    <?php //jquery ?>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.8.2.min.js"><\/script>')</script>
 
-        <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
-
-        <!-- Le styles -->
-        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
-                        ->prependStylesheet($this->basePath() . '/css/bootstrap-responsive.min.css')
-                        ->prependStylesheet($this->basePath() . '/css/style.css')
-                        ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css') ?>
-
-        <!-- Scripts -->
-        <?php echo $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
-                                      ->prependFile($this->basePath() . '/js/bootstrap.min.js')
-                                      ->prependFile($this->basePath() . '/js/jquery.min.js') ?>
-
+    <?php //jquery ui?>
+    <script>window.jQuery.ui || document.write('<script src="js/libs/jquery-ui-1.8.23.min.js"><\/script>')</script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
     </head>
+
     <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Skeleton Application') ?></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav">
-                            <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
-                        </ul>
-                    </div><!--/.nav-collapse -->
-                </div>
+        <div id="container">
+            <header>
+                <a href="/" id="homeLink"><img src="/images/logo.png" alt="UC Merced" /></a>
+                <span>Template</span>
+                <form id="hdrSearch">
+                    <input type="text" class="txt" />
+                    <input type="submit" class="submit" />
+                </form>
+                <nav id="smallNav" class="top">
+                    <ul>
+                        <?php //echo $this->loginMenu();?>
+                    </ul>
+                </nav>
+                <nav>
+                    
+                </nav>
+            </header>
+            <div id="main" role="main">
+                <article class="widthRightNav">
+                    <?php //echo $this->getMessages(); ?>
+                    <?php echo $this->layout()->content; ?>
+                </article>
             </div>
-        </div>
-        <div class="container">
-            <?php echo $this->content; ?>
-            <hr>
             <footer>
-                <p>&copy; 2005 - <?php echo date('Y') ?> by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
+                <div class="left">
+                    <span>Resources</span>
+                    <ul>
+                        <li><a href="http://www.ucmerced.edu/site-list">Site List</a></li>
+                        <li><a href="http://directory.ucmerced.edu" target="_blank">Directory</a></li>
+                        <li><a href="http://www.ucmerced.edu/directions-map">Directions &amp; Map</a></li>
+                        <li><a href="http://www.ucmerced.edu/about-uc-merced">About UC Merced</a></li>
+                        <li><a href="mailto:communications@ucmerced.edu?subject=Link Shortener">Site Contact</a></li>
+                    </ul>
+
+                </div>
+
+                <div class="right">
+                    <img src="/images/ftrLogo.gif" alt="UC Merced" /><br />
+                    The first new American research university of the 21<sup>st</sup> century, with a mission of research, teaching, and service
+                </div>
+                <div class="ftr">
+                    <p class="pLeft"><strong>University of California</strong>, Merced 5200 Lake Rd, Merced, CA 95344 T:(209) 228-4400</p>
+                    <p class="pRight">&COPY; 2012 UC Regents | <a href="http://www.ucmerced.edu/privacy-statement" target="_blank">Privacy/Legal Notice</a>
+                </div>
             </footer>
-        </div> <!-- /container -->
-        <?php echo $this->inlineScript() ?>
+        </div> <!-- eo #container -->
+
+        <?php //Any extra scripting done here ?>
+        <script src="/js/script.js"></script>
+
+        <?php //TODO: Add inline script option from Zend ?>
+
+        <?php //Google analytics ?>
+        <script>
+          /*
+          var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+          (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+          g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+          s.parentNode.insertBefore(g,s)}(document,'script'));
+          */
+        </script>
     </body>
 </html>
