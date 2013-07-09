@@ -11,6 +11,7 @@ namespace Application;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Application\View\Helper\LoginMenu;
 
 class Module
 {
@@ -36,4 +37,16 @@ class Module
             ),
         );
     }
+
+    public function getViewHelperConfig(){
+        return array(
+            "factories"=>array(
+                "loginMenu"=>function($sm){
+                    $locator = $sm->getServiceLocator();
+                    return new LoginMenu($locator->get('session'));
+                }
+            )
+        );
+    }
+
 }

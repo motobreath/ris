@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width">
     <?php echo $this->headLink(); ?>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="/favicon.ico">
     <?php //jquery ?>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/libs/jquery-1.8.2.min.js"><\/script>')</script>
@@ -20,7 +21,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
     </head>
 
-    <body>
+    <body class='<?php echo $this->bodyClass?>'>
         <div id="container">
             <header>
                 <a href="/" id="homeLink"><img src="/images/logo.png" alt="UC Merced" /></a>
@@ -31,11 +32,11 @@
                 </form>
                 <nav id="smallNav" class="top">
                     <ul>
-                        <?php //echo $this->loginMenu();?>
+                        <?php echo $this->loginMenu();?>
                     </ul>
                 </nav>
                 <nav>
-                    
+                    <?php echo $this->navigation('navigation')->menu();?>
                 </nav>
             </header>
             <div id="main" role="main">

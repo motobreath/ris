@@ -148,9 +148,22 @@ header a, footer a{
 
 header nav{
     position:absolute;
-    top:95px;
-    left:10px;
+    left: 0;
+    top: 81px;
     font-family: 'Droid Sans', sans-serif;
+}
+
+header nav a{
+    display: block;
+    font-size: 12pt;
+    height: 15px;
+    outline: medium none !important;
+    padding: 17px 25px;
+    text-decoration: none;
+}
+
+header nav ul.navigation a:hover{
+    background-color:#08203F;
 }
 
 header #hdrSearch{
@@ -204,12 +217,6 @@ nav ul, nav li{
 
 nav li{
     float:left;
-}
-header nav a{
-    text-decoration:none;
-    display:block;
-    padding:0 20px;
-    font-size:12pt;
 }
 
 #smallNav{

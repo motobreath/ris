@@ -8,6 +8,11 @@
  */
 
 return array(
+    'view_helpers' => array(
+        'invokables' => array(
+            //'loginMenu' => 'Application\View\Helper\LoginMenu',
+        ),
+    ),
     'router' => array(
         'routes' => array(
             'home' => array(
@@ -54,7 +59,8 @@ return array(
     ),
     'service_manager' => array(
         'factories' => array(
-            'Navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
+            'navigation' => "Zend\Navigation\Service\DefaultNavigationFactory"
+            
         ),
         'abstract_factories' => array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
@@ -95,5 +101,23 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
-    'navigation'=>array()
+
+    'navigation' => array(
+        'default' => array(
+            array(
+                'label' => 'Layout 1',
+                'route' => 'home',
+            ),
+            array(
+                'label' => 'Layout 2',
+                'uri' => '/application/index/layout2',
+            ),
+            array(
+                'label' => 'Layout 3',
+                'uri' => '/application/index/layout3',
+            ),
+        ),
+    ),
+
+
 );

@@ -18,4 +18,12 @@ class IndexController extends AbstractActionController
     {
         return new ViewModel();
     }
+    public function layout2Action()
+    {
+        $this->layout('layout/layout2');
+    }
+    public function layout3Action()
+    {
+        $this->layout('layout/layout3');
+    }
 }
