@@ -104,6 +104,9 @@ class CASAdapter implements AdapterInterface
         foreach($rows as $row){
             $results[]=$row->role;
         }
+        if(empty($results)){
+            $results[]="guest";
+        }
         $user->roles=$results;
 
         //save user into Result
