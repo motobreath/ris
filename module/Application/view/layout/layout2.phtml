@@ -30,7 +30,7 @@
 </head>
 <body class='<?php echo $this->bodyClass?>'>
     <div id="container">
-        <header>
+        <header class="noNav">
 
             <a href="/" id="homeLink"><img src="/images/logo.png" alt="UC Merced" /></a>
             <span>Template</span>
@@ -39,7 +39,7 @@
                 <input type="submit" class="submit" />
             </form>
             <nav id="smallNav" class="top">
-                <?php //echo $this->loginMenu();?>
+                <?php echo $this->loginMenu();?>
             </nav>
         </header>
         <div id="main" role="main">

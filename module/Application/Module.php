@@ -13,6 +13,15 @@ use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Application\View\Helper\LoginMenu;
 
+use Application\Model\User;
+use Application\Model\UserTable;
+use Application\Model\Role;
+use Application\Model\RoleTable;
+
+
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Db\TableGateway\TableGateway;
+
 class Module
 {
     public function onBootstrap(MvcEvent $e)
@@ -38,13 +47,54 @@ class Module
         );
     }
 
+    public function getServiceConfig(){
+        return array(
+            "factories"=>array(
+                'Application\Model\UserMapper' =>  function($sm) {
+                    $tableGateway = $sm->get('UserTableGateway');
+                    $table = new UserTable($tableGateway);
+                    return $table;
+                },
+                'UserTableGateway' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new User());
+                    return new TableGateway('users', $dbAdapter, null, $resultSetPrototype);
+                },
+                'Application\Model\RoleMapper' =>  function($sm) {
+                    $tableGateway = $sm->get('RoleTableGateway');
+                    $table = new UserTable($tableGateway);
+                    return $table;
+                },
+                'RoleTableGateway' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Role());
+                    return new TableGateway('roles', $dbAdapter, null, $resultSetPrototype);
+                },
+            )
+
+        );
+    }
+
     public function getViewHelperConfig(){
         return array(
             "factories"=>array(
-                "loginMenu"=>function($sm){
-                    $locator = $sm->getServiceLocator();
-                    return new LoginMenu($locator->get('session'));
-                }
+                "loginMenu"=>function(\Zend\View\HelperPluginManager $pluginManager){
+                    $locator = $pluginManager->getServiceLocator();
+                    $authService=$locator->get("AuthService");
+                    $loginMenu=new LoginMenu();
+                    $loginMenu->setAuth($authService);
+                    return $loginMenu;
+                },
+                "getFlashMessages"=>function(\Zend\View\HelperPluginManager $pluginManager){
+                    $locator = $pluginManager->getServiceLocator();
+                    $flashMessenger = $locator->get('ControllerPluginManager')->get('flashMessenger');
+                    $viewHelper=new \Application\View\Helper\GetFlashMessages();
+                    $viewHelper->setFlashMessenger($flashMessenger);
+                    return $viewHelper;
+                },
+
             )
         );
     }

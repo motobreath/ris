@@ -11,6 +11,7 @@ return array(
     'view_helpers' => array(
         'invokables' => array(
             //'loginMenu' => 'Application\View\Helper\LoginMenu',
+            //"getFlashMessages" => 'Application\View\Helper\GetFlashMessages'
         ),
     ),
     'router' => array(
@@ -60,7 +61,7 @@ return array(
     'service_manager' => array(
         'factories' => array(
             'navigation' => "Zend\Navigation\Service\DefaultNavigationFactory"
-            
+
         ),
         'abstract_factories' => array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
@@ -104,6 +105,7 @@ return array(
 
     'navigation' => array(
         'default' => array(
+
             array(
                 'label' => 'Layout 1',
                 'route' => 'home',

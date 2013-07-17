@@ -4,3 +4,6 @@
 [submodule "vendor/ZFTool"]
 	path = vendor/ZFTool
 	url = https://github.com/zendframework/ZFTool.git
+[submodule "vendor/CAS/src"]
+	path = vendor/CAS/src
+	url = https://github.com/Jasig/phpCAS.git

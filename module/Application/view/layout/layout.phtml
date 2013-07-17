@@ -41,8 +41,10 @@
             </header>
             <div id="main" role="main">
                 <article class="widthRightNav">
-                    <?php //echo $this->getMessages(); ?>
-                    <?php echo $this->layout()->content; ?>
+                <?php
+                    echo $this->getFlashMessages();
+                    echo $this->layout()->content;
+                ?>
                 </article>
             </div>
             <footer>

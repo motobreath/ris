@@ -1,29 +1,34 @@
 <?php
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
 
-namespace Application\Controller;
+namespace Admin\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
+    /**
+     *
+     * @var Zend\Authentication\AuthenticationService\AuthenticationService
+     */
+    protected $authservice;
+
+    protected $CAS;
+
+    public function getCAS(){
+        if(!$this->CAS){
+            $this->CAS=$this->getServiceLocator()
+                            ->get("CAS");
+        }
+        return $this->CAS;
+    }
+
     public function indexAction()
     {
         return new ViewModel();
     }
-    public function layout2Action()
-    {
-        $this->layout('layout/layout2');
-    }
-    public function layout3Action()
-    {
-        $this->layout('layout/layout3');
+    public function logoutAction(){
+
+
     }
 }
