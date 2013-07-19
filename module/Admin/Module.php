@@ -2,8 +2,29 @@
 
 namespace Admin;
 
+use Zend\ModuleManager\ModuleManager;
+use Zend\Mvc\MvcEvent;
+
 class Module
 {
+
+    public function init(ModuleManager $moduleManager)
+    {
+        $events = $moduleManager->getEventManager();
+
+        $sharedEvents = $events->getSharedManager();
+        $sharedEvents->attach(__NAMESPACE__, 'dispatch', array($this, 'authorize'), 1);
+    }
+
+    public function authorize(MvcEvent $e){
+        $sm=$e->getApplication()->getServiceManager();
+        $auth=$sm->get("AuthService");
+        if(!$auth->hasIdentity){
+            $forward=$sm->get("ControllerPluginManager")->get("Forward");
+            $forward->dispatch('Authentication\Controller\Index', array("action"=>"login"));
+        }
+    }
+
 
     public function getConfig()
     {

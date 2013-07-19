@@ -91,9 +91,6 @@ class CASAdapter implements AdapterInterface
         $user=new User();
         $user->exchangeArray($userData);
 
-        $inputFilter=$user->getInputFilter();
-        var_dump($inputFilter->isValid());
-
         $userID=$userMapper->save($user);
 
         //find roles from userID returned by save
