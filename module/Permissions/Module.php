@@ -2,6 +2,7 @@
 namespace Permissions;
 
 use Zend\Mvc\MvcEvent;
+use Zend\Mvc\Router\Http\RouteMatch;
 
 class Module
 {
@@ -19,8 +20,15 @@ class Module
             
             //var_dump( $e->getRouteMatch() );
             //die();
-            
-            $strategy->setRedirectUri('/');
+            $controller = $e->getRouteMatch()->getParam('controller');
+            switch( $controller ){
+                case 'Admin\Controller\Index':
+                case 'users':
+                    $strategy->setRedirectUri('/login');
+                    break;
+                default: 
+                    $strategy->setRedirectUri('/');
+            }
             
             $flashMessenger = $pluginManager->get('FlashMessenger');
             $flashMessenger->setNamespace('Error')->addMessage('You do not have access');
