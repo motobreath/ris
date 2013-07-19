@@ -19,7 +19,7 @@ class Module
     public function authorize(MvcEvent $e){
         $sm=$e->getApplication()->getServiceManager();
         $auth=$sm->get("AuthService");
-        if(!$auth->hasIdentity){
+        if( !$auth->hasIdentity() ){
             $forward=$sm->get("ControllerPluginManager")->get("Forward");
             $forward->dispatch('Authentication\Controller\Index', array("action"=>"login"));
         }
