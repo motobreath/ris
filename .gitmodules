@@ -7,3 +7,6 @@
 [submodule "vendor/CAS/src"]
 	path = vendor/CAS/src
 	url = https://github.com/Jasig/phpCAS.git
+[submodule "vendor/BjyAuthorize"]
+	path = vendor/BjyAuthorize
+	url = https://github.com/bjyoungblood/BjyAuthorize.git
