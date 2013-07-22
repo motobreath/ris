@@ -16,12 +16,32 @@ class Module
         $sharedEvents->attach(__NAMESPACE__, 'dispatch', array($this, 'authorize'), 1);
     }
 
-    public function authorize(MvcEvent $e){
-        $sm=$e->getApplication()->getServiceManager();
-        $auth=$sm->get("AuthService");
+    public function onBootstrap(MvcEvent $e){
+        $app = $e->getApplication();
+        $sm = $app->getServiceManager();
+        $em = $app->getEventManager();
+        
+        $auth = $sm->get('AuthService');
         if( !$auth->hasIdentity() ){
-            $forward=$sm->get("ControllerPluginManager")->get("Forward");
+            $guards = $sm->get('BjyAuthorize\Guards');
+            foreach ($guards as $guard) {
+                $guard->detach( $em );
+            }
+        }
+    }
+    
+    public function authorize(MvcEvent $e){
+        $sm = $e->getApplication()->getServiceManager();
+        $auth = $sm->get("AuthService");
+        if( !$auth->hasIdentity() ){
+            $forward = $sm->get("ControllerPluginManager")->get("Forward");
             $forward->dispatch('Authentication\Controller\Index', array("action"=>"login"));
+        }
+        
+        $service = $sm->get('BjyAuthorize\Service\Authorize');
+        if( !$service->isAllowed('adminAccess', 'view') ){
+            $sm->get('ControllerPluginManager')->get('FlashMessenger')->addErrorMessage('You do not have access');
+            return $sm->get("ControllerPluginManager")->get("Redirect")->toUrl('/');
         }
     }
 
@@ -34,9 +54,6 @@ class Module
     public function getAutoloaderConfig()
     {
         return array(
-            'Zend\Loader\ClassMapAutoloader' => array(
-                __DIR__ . '/autoload_classmap.php',
-            ),
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
