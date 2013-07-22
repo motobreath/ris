@@ -63,7 +63,7 @@ class Module
                 },
                 'Application\Model\RoleMapper' =>  function($sm) {
                     $tableGateway = $sm->get('RoleTableGateway');
-                    $table = new UserTable($tableGateway);
+                    $table = new RoleTable($tableGateway);
                     return $table;
                 },
                 'RoleTableGateway' => function ($sm) {

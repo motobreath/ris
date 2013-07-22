@@ -20,6 +20,7 @@ class IdentityProviderFactory implements FactoryInterface
         $auth = $serviceLocator->get('AuthService');
 
         $user = $auth->hasIdentity() ? $auth->getIdentity() : null;
+
         $provider = new IdentityProvider( $user );
         $provider->setDefaultRole( $config['default_role'] );
 
