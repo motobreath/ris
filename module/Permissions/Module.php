@@ -2,7 +2,6 @@
 namespace Permissions;
 
 use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Router\Http\RouteMatch;
 
 class Module
 {
@@ -18,20 +17,22 @@ class Module
         $em->attach( 'dispatch.error', function($e) use ($sm, $strategy){
             $pluginManager = $sm->get('ControllerPluginManager');
             
-            //var_dump( $e->getRouteMatch() );
-            //die();
-            $controller = $e->getRouteMatch()->getParam('controller');
-            switch( $controller ){
-                case 'Admin\Controller\Index':
-                case 'users':
-                    $strategy->setRedirectUri('/login');
-                    break;
-                default: 
-                    $strategy->setRedirectUri('/');
-            }
+            $routeMatch = $e->getRouteMatch();
+            $controller = isset($routeMatch) ? $routeMatch->getParam('controller') : null;
             
             $flashMessenger = $pluginManager->get('FlashMessenger');
-            $flashMessenger->setNamespace('Error')->addMessage('You do not have access');
+            if( isset($controller) ){
+                switch( $controller ){
+                    case 'Admin\Controller\Index':
+                    case 'users':
+                        $strategy->setRedirectUri('/');
+                        $flashMessenger->addErrorMessage('You do not have access');
+                        break;
+                    default: 
+                        $strategy->setRedirectUri('/');
+                }
+            }
+            
         }, -4999); //execute before dispatch.error redirect
                     
         $em->attach($strategy);

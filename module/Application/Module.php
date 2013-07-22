@@ -80,14 +80,12 @@ class Module
     public function getViewHelperConfig(){
         return array(
             "factories"=>array(
-                "loginMenu"=>function(\Zend\View\HelperPluginManager $pluginManager){
+                "loginMenu" => function(\Zend\View\HelperPluginManager $pluginManager){
                     $locator = $pluginManager->getServiceLocator();
-                    $authService=$locator->get("AuthService");
-                    $loginMenu=new LoginMenu();
-                    $loginMenu->setAuth($authService);
+                    $loginMenu = new LoginMenu($locator);
                     return $loginMenu;
                 },
-                "getFlashMessages"=>function(\Zend\View\HelperPluginManager $pluginManager){
+                "getFlashMessages" => function(\Zend\View\HelperPluginManager $pluginManager){
                     $locator = $pluginManager->getServiceLocator();
                     $flashMessenger = $locator->get('ControllerPluginManager')->get('flashMessenger');
                     $viewHelper=new \Application\View\Helper\GetFlashMessages();

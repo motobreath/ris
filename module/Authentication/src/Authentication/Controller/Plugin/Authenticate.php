@@ -58,9 +58,7 @@ class Authenticate extends AbstractPlugin
         //logout of CAS
         $CAS=$this->getCAS();
         $CAS::client(SAML_VERSION_1_1,"cas.ucmerced.edu",443,"/cas",false);
-        //TODO: change redirect to actual server name
-        $redirect="http://zf2.template.faxanadu.ucmerced.edu/";
-        $CAS::logoutWithRedirectService($redirect);
+        $CAS::logoutWithRedirectService("http://" . $_SERVER['SERVER_NAME'] . "/");
     }
 
 

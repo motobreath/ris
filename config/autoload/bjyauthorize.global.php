@@ -36,6 +36,7 @@ return array(
         // in the ACL. like roles, they can be hierarchical
         'resource_providers' => array(
             'BjyAuthorize\Provider\Resource\Config' => array(
+                'adminAccess' => array(),
                 'adminNav' => array(),
             ),
         ),
@@ -52,7 +53,8 @@ return array(
                     // allow guests and users (and admins, through inheritance)
                     // the "wear" privilege on the resource "pants"
                     //array(array('guest', 'user'), 'pants', 'wear')
-                   array( array('admin'), 'adminNav', 'view' ),
+                   array( array('admin'), 'adminAccess', 'view' ),
+                   array( array('admin'), 'adminNav', 'view' )
                 )
             )
         ),
