@@ -18,12 +18,11 @@ class IdentityProviderFactory implements FactoryInterface
         $config = $serviceLocator->get('BjyAuthorize\Config');
 
         $auth = $serviceLocator->get('AuthService');
-        
+
         $user = $auth->hasIdentity() ? $auth->getIdentity() : null;
-        var_dump($user);
         $provider = new IdentityProvider( $user );
         $provider->setDefaultRole( $config['default_role'] );
-        
+
         return $provider;
     }
 }
