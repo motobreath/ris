@@ -1,1 +1,23 @@
-hello users
+<?php
+    $form->prepare();
+    
+    $errors = $form->get('ucmnetid')->getMessages();
+    if( !empty($errors) ){
+        foreach($errors as $key => $value){
+            echo "<p class='msg error' style='margin-bottom:5px; width:444px'>{$value}</p>";
+        }
+    }
+?>
+
+<h1>Add Administrators</h1>
+
+<?php
+    echo 
+        $this->form()->openTag($form) .
+        $this->formText( $form->get('ucmnetid') ) .
+        $this->formSubmit( $form->get('Go') );
+    
+    echo $this->form()->closeTag();
+    
+    echo $this->displayAdmins(); 
+?>

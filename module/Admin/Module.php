@@ -88,4 +88,14 @@ class Module
             ),
         );
     }
+    
+    public function getViewHelperConfig(){
+        return array(
+            'factories' => array(
+                'displayAdmins' => function($helperPlugin){
+                    return ( new View\Helper\DisplayAdmins( $helperPlugin->getServiceLocator() ) );
+                },
+            )
+        );
+    }
 }

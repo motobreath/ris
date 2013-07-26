@@ -64,8 +64,8 @@ class CASAdapter implements AdapterInterface
      */
     public function authenticate() {
 
-        /* @var \phpCAS */
-        $CAS=$this->sm->get("CAS");
+        /* @var $CAS \phpCAS */
+        $CAS = $this->sm->get("CAS");
         $CAS::client(SAML_VERSION_1_1,"cas.ucmerced.edu",443,"/cas",false);
         $CAS::setNoCasServerValidation();
         $CAS::forceAuthentication();

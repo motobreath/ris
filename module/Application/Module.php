@@ -52,7 +52,7 @@ class Module
             "factories"=>array(
                 'Application\Model\UserMapper' =>  function($sm) {
                     $tableGateway = $sm->get('UserTableGateway');
-                    $table = new UserTable($tableGateway);
+                    $table = new UserTable($tableGateway, new \Zend\Db\Sql\Sql( $sm->get('Zend\Db\Adapter\Adapter') ) );
                     return $table;
                 },
                 'UserTableGateway' => function ($sm) {

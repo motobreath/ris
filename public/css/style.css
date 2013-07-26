@@ -345,6 +345,10 @@ footer .pRight{
     width:100% !important;
 }
 
+.short{
+    width:442px;
+}
+
 table.stripeTable{
     border:1px solid #bfbfbf;
     width:444px;

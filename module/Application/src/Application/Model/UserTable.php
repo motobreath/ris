@@ -2,13 +2,17 @@
 namespace Application\Model;
 
 use Zend\Db\TableGateway\TableGateway;
+use Zend\Db\Sql\Sql;
 
 class UserTable
 {
+    protected $sql;
+    
     protected $tableGateway;
 
-    public function __construct(TableGateway $tableGateway)
+    public function __construct(TableGateway $tableGateway, Sql $sql)
     {
+        $this->sql = $sql;
         $this->tableGateway = $tableGateway;
     }
 
@@ -34,6 +38,17 @@ class UserTable
         $row = $rowset->current();
         return $row;
     }
+    
+    public function getAdmins(){
+        $select = $this->sql->select();
+        $select->from('users')
+               ->join('roles', 'users.id = roles.userid')
+               ->where->equalTo('roles.role', 'admin');
+        $statement = $this->sql->prepareStatementForSqlObject($select);
+        $result = $statement->execute();
+        
+        return $result;
+    }
 
     public function save(User $user)
     {
@@ -58,7 +73,7 @@ class UserTable
 
     public function delete($id)
     {
-        $this->tableGateway->delete(array('id' => $id));
+        return $this->tableGateway->delete(array('id' => $id));
     }
 }
 

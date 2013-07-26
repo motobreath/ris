@@ -58,7 +58,12 @@ class RoleTable
 
     public function delete($id)
     {
-        $this->tableGateway->delete(array('id' => $id));
+        return $this->tableGateway->delete(array('id' => $id));
+    }
+    
+    public function deleteUser($id)
+    {
+        return $this->tableGateway->delete(array('userid' => $id));
     }
 }
 
