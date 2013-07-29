@@ -78,6 +78,6 @@ return array(
         ),
         
         // strategy service name for the strategy listener to be used when permission-related errors are detected
-        'unauthorized_strategy' => 'BjyAuthorize\View\RedirectionStrategy',
+        'unauthorized_strategy' => 'Permissions\View\RedirectionStrategy',
     ),
 );

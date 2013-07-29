@@ -2,50 +2,8 @@
 
 namespace Admin;
 
-use Zend\ModuleManager\ModuleManager;
-use Zend\Mvc\MvcEvent;
-
-class Module
-{
-
-    public function init(ModuleManager $moduleManager)
-    {
-        $events = $moduleManager->getEventManager();
-
-        $sharedEvents = $events->getSharedManager();
-        $sharedEvents->attach(__NAMESPACE__, 'dispatch', array($this, 'authorize'), 1);
-    }
-
-    public function onBootstrap(MvcEvent $e){
-        $app = $e->getApplication();
-        $sm = $app->getServiceManager();
-        $em = $app->getEventManager();
-        
-        $auth = $sm->get('AuthService');
-        if( !$auth->hasIdentity() ){
-            $guards = $sm->get('BjyAuthorize\Guards');
-            foreach ($guards as $guard) {
-                $guard->detach( $em );
-            }
-        }
-    }
+class Module{
     
-    public function authorize(MvcEvent $e){
-        $sm = $e->getApplication()->getServiceManager();
-        $auth = $sm->get("AuthService");
-        if( !$auth->hasIdentity() ){
-            $forward = $sm->get("ControllerPluginManager")->get("Forward");
-            $forward->dispatch('Authentication\Controller\Index', array("action"=>"login"));
-        }
-        
-        $service = $sm->get('BjyAuthorize\Service\Authorize');
-        if( !$service->isAllowed('adminAccess', 'view') ){
-            $sm->get('ControllerPluginManager')->get('FlashMessenger')->addErrorMessage('You do not have access');
-            return $sm->get("ControllerPluginManager")->get("Redirect")->toUrl('/');
-        }
-    }
-
-
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';

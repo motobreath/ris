@@ -4,39 +4,39 @@ namespace Permissions;
 use Zend\Mvc\MvcEvent;
 
 class Module
-{
+{   
     public function onBootstrap(MvcEvent $e){
         $app = $e->getApplication();
         $sm = $app->getServiceManager();
-        
-        $config = $sm->get('BjyAuthorize\Config');
-        $strategy = $sm->get($config['unauthorized_strategy']);
 
-        $em = $app->getEventManager();
+        $em = $app->getEventManager();      
         
-        $em->attach( 'dispatch.error', function($e) use ($sm, $strategy){
-            $pluginManager = $sm->get('ControllerPluginManager');
-            
-            $routeMatch = $e->getRouteMatch();
-            $controller = isset($routeMatch) ? $routeMatch->getParam('controller') : null;
-            
-            $flashMessenger = $pluginManager->get('FlashMessenger');
-            if( isset($controller) ){
-                switch( $controller ){
-                    case 'Admin\Controller\Index':
-                    case 'users':
-                        $strategy->setRedirectUri('/');
-                        $flashMessenger->addErrorMessage('You do not have access');
-                        break;
-                    default: 
-                        $strategy->setRedirectUri('/');
-                }
+        $auth = $sm->get('AuthService');
+        if( !$auth->hasIdentity() ){
+            $guards = $sm->get('BjyAuthorize\Guards');
+            foreach ($guards as $guard) {
+                $guard->detach( $em );
             }
-            
-        }, -4999); //execute before dispatch.error redirect
-                    
-        $em->attach($strategy);
+        }
         
+        $em->getSharedManager()->attach('Admin', 'dispatch', array($this, 'authorize'), 1);
+    }
+    
+    public function authorize(MvcEvent $e){
+        $sm = $e->getApplication()->getServiceManager();
+        $controllerPlugin = $sm->get('ControllerPluginManager');
+        
+        $auth = $sm->get('AuthService');
+        if( !$auth->hasIdentity() ){
+            $forward = $controllerPlugin->get('Forward');
+            $forward->dispatch( 'Authentication\Controller\Index', array('action' => 'login') );
+        }
+
+        $service = $sm->get('BjyAuthorize\Service\Authorize');
+        if( !$service->isAllowed('adminAccess', 'view') ){
+            $controllerPlugin->get('FlashMessenger')->addErrorMessage('You do not have access');
+            return $controllerPlugin->get('Redirect')->toUrl('/');
+        }
     }
     
     public function getConfig()
