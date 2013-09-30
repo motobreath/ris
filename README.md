@@ -8,19 +8,27 @@ Update Submodules:
     git submodule init
     git submodule update
 
+
+
 ## Administration Section
+Create local database
+
+Run SQL in /data/SQL to create tables
+
 Include local.php in the /config/autoload folder with database connectivity info for your database:
 
     <?php
     return array(
         'db' => array(
-            'dsn'      => 'mysql:dbname=ap;host=localhost',
+            'dsn'      => 'mysql:dbname=template;host=localhost',
             'username' => 'user',
             'password' => 'pass',
             'host'     => 'localhost'
         ),
     );
     ?>
+
+
 
 Don't forget to seed yourself as an admin! Login with your user to generate a userID to generate a userID then run this SQL (Where X=your user ID):
 
