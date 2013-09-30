@@ -1,6 +1,5 @@
 <?php
     $form->prepare();
-    
     $errors = $form->get('ucmnetid')->getMessages();
     if( !empty($errors) ){
         foreach($errors as $key => $value){
@@ -9,15 +8,52 @@
     }
 ?>
 
+<section>
 <h1>Add Administrators</h1>
-
+<?php echo $this->getFlashMessages() ?>
 <?php
-    echo 
+    echo
         $this->form()->openTag($form) .
         $this->formText( $form->get('ucmnetid') ) .
         $this->formSubmit( $form->get('Go') );
-    
+
     echo $this->form()->closeTag();
-    
-    echo $this->displayAdmins(); 
 ?>
+</section>
+
+<section class="currentAdmins">
+    <h1>Current Administrators</h1>
+    <?php if($this->admins) { ?>
+        <table class="stripeTable" id="administratorsTable">
+            <thead>
+            <tr>
+                <th width="310" align="left">UCMNETID</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <?php
+            $count=0;
+            foreach($this->admins as $admin){
+                if($count%2==1){
+                    $class="class='even'";
+                }
+                else{
+                    $class='';
+                }
+                ?>
+                <tr <?php echo $class?>>
+                    <td><?php echo $admin['ucmnetid']?></td>
+                    <td align="center"><a href="#delete" class="DA" data-admin="<?php echo $admin['userid']?>">[ Delete ]</a></td>
+                </tr>
+            <?php
+            $count++;
+            } ?>
+        </table>
+
+    <?php }
+    else{
+        echo "No Admins";
+    }
+    ?>
+</section>
+

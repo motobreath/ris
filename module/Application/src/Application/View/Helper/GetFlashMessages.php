@@ -28,19 +28,19 @@ class GetFlashMessages extends AbstractHelper
         $output="";
 
         $flashMsg=$this->getFlashMessenger();
-        $errors=$flashMsg->getCurrentErrorMessages();
+        $errors=$flashMsg->getErrorMessages();
 
         if(count($errors)>0){
              foreach($errors as $error){
-                $output.="<p class='msg error'>$error</p>";
+                $output.="<p class='msg error'>$error</p><br />";
             }
 
         }
-        $successMessages=$flashMsg->getCurrentSuccessMessages();
-       
+        $successMessages=$flashMsg->getSuccessMessages();
+
         if(count($successMessages)>0){
             foreach($successMessages as $msg){
-                $output.="<p class='msg success'>$msg</p>";
+                $output.="<p class='msg success'>$msg</p><br />";
             }
         }
 

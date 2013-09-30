@@ -458,31 +458,30 @@ article.withRightNav{
     margin-bottom:20px;
 }
 
-nav.admin{
+aside.admin nav, nav.admin{
     padding:0;
     width:198px;
     margin:10px 0;
     border:1px solid #B0BDCE;
 }
-nav.admin li{
+aside.admin nav li, nav.admin li{
     border-bottom:1px solid #B0BDCE;
     float:none;
 
 }
-nav.admin li:last-child{
+aside.admin nav li:last-child, nav.admin li:last-child{
     border:none;
 
 }
-nav.admin a{
+aside.admin nav a, nav.admin a{
     padding:6px 8px;
     display:block;
 }
 
-nav.admin a:hover{
+aside.admin nav a:hover, nav.admin a:hover{
     background-color:#B0BDCE;
     color:#fff !important;
 }
-
 /*End layout 3 styles*/
 
 /*Form Styles*/
@@ -571,7 +570,10 @@ section.currentAdmins{
     overflow:hidden;
 }
 
-
+aside.admin{
+    float:right;
+    margin-top:10px;
+}
 
 
 @media only screen and (min-width: 35em) {

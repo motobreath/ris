@@ -14,7 +14,6 @@
 return array(
     'db' => array(
         'driver'         => 'Pdo',
-        'dsn'            => 'mysql:dbname=template;host=localhost',
         'driver_options' => array(
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
         ),
@@ -100,7 +99,7 @@ return array(
             ),
 
         ),
-        
+
         // strategy service name for the strategy listener to be used when permission-related errors are detected
         'unauthorized_strategy' => 'Permissions\View\RedirectionStrategy',
     ),
