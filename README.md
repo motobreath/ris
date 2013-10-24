@@ -36,7 +36,8 @@ Include a local.php configuration file. Place this file in config/autoload. Samp
 
     );
 
-Note: Not all services are required. Remove each entry in the service manger from Application/Module.php if not using.
+Note: Not all services are required. Remove each entry in the service manger from Application/Module.php
+if not using.
 
 
 ##Hosting:
@@ -46,7 +47,7 @@ Point your web server to the public folder. Additional Information coming soon..
 ## Administration Section:
 NOTE: Mysql database is required to run admin section.
 It is possible to use other databases, just change the local.php configuration file to
-Create local database
+change database info.
 
 Run SQL in /data/SQL to create tables
 
