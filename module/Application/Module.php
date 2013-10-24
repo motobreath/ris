@@ -50,6 +50,38 @@ class Module
     public function getServiceConfig(){
         return array(
             "factories"=>array(
+                "Ldap"=>function($sm){
+                    $config=$sm->get("config");
+                    $ldap=new \Zend\Ldap\Ldap($config["ldap"]);
+                    $ldapService=new Services\LdapService($ldap);
+                    return $ldapService;
+
+                },
+                "Email"=>function($sm){
+                    $config=$sm->get("config");
+
+                    //set up smtp transport
+                    $smtpOptions=$config["email"]["smtp"];
+                    $transport = new \Zend\Mail\Transport\Smtp();
+                    $options   = new \Zend\Mail\Transport\SmtpOptions($smtpOptions);
+                    $transport->setOptions($options);
+
+                    //determine to send error email
+                    $sendErrorEmails=$config["email"]["sendErrorEmails"];
+                    return new Services\Email\EmailService($transport,$sendErrorEmails);
+
+                },
+                "Logger"=>function($sm){
+                    $path=$_SERVER["DOCUMENT_ROOT"] . '/../data/logs/application.log';
+                    //ensure directory exists
+                    if(!file_exists($path)){
+                        fopen($path, 'w');
+                    }
+                    $writer = new \Zend\Log\Writer\Stream($_SERVER["DOCUMENT_ROOT"] . '/../data/logs/application.log');
+                    $logger = new \Zend\Log\Logger();
+                    $logger->addWriter($writer);
+                    return $logger;
+                },
                 'Application\Model\UserMapper' =>  function($sm) {
                     $tableGateway = $sm->get('UserTableGateway');
                     $table = new UserTable($tableGateway, new \Zend\Db\Sql\Sql( $sm->get('Zend\Db\Adapter\Adapter') ) );
