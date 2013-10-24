@@ -7,3 +7,6 @@
 [submodule "vendor/BjyAuthorize"]
 	path = vendor/BjyAuthorize
 	url = https://github.com/bjyoungblood/BjyAuthorize.git
+[submodule "vendor/EdpModuleLayouts"]
+	path = vendor/EdpModuleLayouts
+	url = https://github.com/EvanDotPro/EdpModuleLayouts.git

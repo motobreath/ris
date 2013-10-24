@@ -45,9 +45,6 @@
         </header>
         <div id="main" role="main">
             <article class="withRightNav">
-                <?php
-                    // echo $this->getMessages();
-                ?>
                 <?php echo $this->layout()->content; ?>
             </article>
             <aside id="rightSide" class="admin">
@@ -56,9 +53,7 @@
                     <ul>
                         <li><a href="/admin/users">Manage Application Users</a></li>
                     </ul>
-                    <?php //echo $this->navigation()->menu()->renderMenu(Zend_Registry::get("adminNav"))?>
                 </nav>
-
             </aside>
         </div>
         <footer>

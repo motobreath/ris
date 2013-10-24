@@ -22,12 +22,10 @@ return array(
                     'default' => array(
                         'type'    => 'Segment',
                         'options' => array(
-                            'route'    => '/[:controller[/:action]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
+                            'route'    => '/users',
                             'defaults' => array(
+                                "controller"=>"users",
+                                "action"=>"index"
                             ),
                         ),
                     ),
@@ -40,7 +38,7 @@ return array(
             __DIR__ . '/../view',
         ),
         'template_map' => array(
-            'layout/layout'           => __DIR__ . '/../../application/view/layout/admin.phtml',
+            //'layout/layout'           => __DIR__ . '/../../application/view/layout/admin.phtml',
         )
 
     ),
