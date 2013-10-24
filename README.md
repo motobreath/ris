@@ -41,7 +41,13 @@ if not using.
 
 
 ##Hosting:
-Point your web server to the public folder. Additional Information coming soon...
+Point your web server's root to the public folder. Add server variable APPLICATION_ENV=development to take advantage of the configuration options.
+In apache vhosts I use:
+
+    SetEnv APPLICATION_ENV development
+
+
+Additional Information coming soon...
 
 
 ## Administration Section:
