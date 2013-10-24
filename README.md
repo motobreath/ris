@@ -8,9 +8,44 @@ Update Submodules:
     git submodule init
     git submodule update
 
+Include a local.php configuration file. Place this file in config/autoload. Sample local.php:
+
+    return array(
+        'db' => array(
+            'dsn'      => 'mysql:dbname=####;host=####',
+            'username' => '####',
+            'password' => '####',
+            'host' => 'localhost'
+        ),
+        'ldap'=>array(
+            'host'              => '####',
+            'username'          => '####',
+            'password'          => '####',
+            'baseDn'            => '####',
+        ),
+        "email"=>array(
+            "smtp"=>array(
+                'name'              => '####',
+                'host'              => '####',
+                'connection_class'  => 'login',
+                'connection_config' => array(
+                    'username' => '####',
+                    'password' => '####',
+            ),
+        ),
+
+    );
+
+Note: Not all services are required. Remove each entry in the service manger from Application/Module.php if not using.
+
+
+##Hosting:
+Point your webserver to the public folder
 
 
 ## Administration Section
+NOTE: Mysql database is required to run admin section.
+It is possible to use other databases, just change the local.php configuration file to
 Create local database
 
 Run SQL in /data/SQL to create tables
