@@ -107,16 +107,8 @@ return array(
         'default' => array(
 
             array(
-                'label' => 'Layout 1',
+                'label' => 'Template Home Page',
                 'route' => 'home',
-            ),
-            array(
-                'label' => 'Layout 2',
-                'uri' => '/application/index/layout2',
-            ),
-            array(
-                'label' => 'Layout 3',
-                'uri' => '/application/index/layout3',
             ),
         ),
     ),

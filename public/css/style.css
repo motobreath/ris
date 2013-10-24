@@ -232,10 +232,6 @@ nav li{
     padding-top:10px;
 }
 
-#smallNav span{
-    float:left;
-}
-
 #smallNav li{
 }
 
@@ -369,10 +365,52 @@ table.stripeTable .even{
     background-color:#d9e0eb;
 }
 
-/*specific to layout 1*/
 #smallNav.top{
     position:absolute;
     top:50px;
+}
+
+article.withRightNav{
+    float:left;
+    width:714px;
+    padding-right:20px;
+}
+
+#rightSide{
+    float:left;
+    width:200px;
+    margin-top:20px;
+}
+
+#rightSide .rightSideBottom{
+    border:1px solid #B0BDCE;
+    padding:10px;
+    margin-bottom:20px;
+}
+
+aside.admin nav{
+    padding:0;
+    width:198px;
+    margin:10px 0;
+    border:1px solid #B0BDCE;
+}
+aside.admin nav li{
+    border-bottom:1px solid #B0BDCE;
+    float:none;
+
+}
+aside.admin nav li:last-child{
+    border:none;
+
+}
+aside.admin nav a{
+    padding:6px 8px;
+    display:block;
+}
+
+aside.admin nav a:hover{
+    background-color:#B0BDCE;
+    color:#fff !important;
 }
 
 /*Form Styles*/
