@@ -40,10 +40,10 @@ Note: Not all services are required. Remove each entry in the service manger fro
 
 
 ##Hosting:
-Point your webserver to the public folder
+Point your web server to the public folder. Additional Information coming soon...
 
 
-## Administration Section
+## Administration Section:
 NOTE: Mysql database is required to run admin section.
 It is possible to use other databases, just change the local.php configuration file to
 Create local database
