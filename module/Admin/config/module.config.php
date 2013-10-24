@@ -28,6 +28,19 @@ return array(
                                 "action"=>"index"
                             ),
                         ),
+                        'may_terminate' => true,
+                        'child_routes' => array(
+                            'modify-admin' => array(
+                                'type'    => 'Segment',
+                                'options' => array(
+                                    'route'    => '/modifyadmin',
+                                    'defaults' => array(
+                                        "controller"=>"users",
+                                        "action"=>"modifyadmin"
+                                    ),
+                                ),
+                            ),
+                        ),
                     ),
                 ),
             ),
