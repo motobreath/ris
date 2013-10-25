@@ -41,6 +41,7 @@ if not using.
 
 
 ##Hosting:
+A web server running php 5.4 is required. Tested on Apache, but other web servers should work just as well.
 Point your web server's root to the public folder. Add server variable APPLICATION_ENV=development to take advantage of the configuration options.
 In apache vhosts I use:
 
