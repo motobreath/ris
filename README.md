@@ -48,9 +48,6 @@ In apache vhosts I use:
     SetEnv APPLICATION_ENV development
 
 
-Additional Information coming soon...
-
-
 ## Administration Section:
 NOTE: Mysql database is required to run admin section.
 It is possible to use other databases, just change the local.php configuration file to
