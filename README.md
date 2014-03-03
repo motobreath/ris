@@ -12,6 +12,7 @@ Include a local.php configuration file. Place this file in config/autoload. Samp
 
     return array(
         'db' => array(
+            'driver'   => 'Pdo',
             'dsn'      => 'mysql:dbname=####;host=####',
             'username' => '####',
             'password' => '####',
