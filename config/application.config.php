@@ -1,10 +1,13 @@
 <?php
-
 $env = getenv('APPLICATION_ENV') ?: 'production';
 $configFiles="global,local,development";
+if($env=="staging"){
+    $configFiles="global,local,staging";
+}
 if($env=="production"){
     $configFiles="global,local,production";
 }
+
 
 return array(
     'modules' => array(
@@ -22,6 +25,6 @@ return array(
             './module',
             './vendor'
             ),
-        'config_glob_paths' => array('config/autoload/{,*.}{global,production,local}.php')
+        'config_glob_paths' => array('config/autoload/{,*.}{' . $configFiles . '}.php')
         )
     );
