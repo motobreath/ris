@@ -31,6 +31,7 @@ Include a local.php configuration file. Place this file in config/autoload. Samp
                 'connection_config' => array(
                     'username' => '####',
                     'password' => '####',
+                )
             ),
         ),
 
