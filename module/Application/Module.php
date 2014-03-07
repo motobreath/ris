@@ -17,6 +17,10 @@ use Application\Model\User;
 use Application\Model\UserTable;
 use Application\Model\Role;
 use Application\Model\RoleTable;
+use Application\Model\Location;
+use Application\Model\LocationsTable;
+use Application\Model\Building;
+use Application\Model\BuildingsTable;
 
 
 use Zend\Db\ResultSet\ResultSet;
@@ -103,6 +107,28 @@ class Module
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new Role());
                     return new TableGateway('roles', $dbAdapter, null, $resultSetPrototype);
+                },
+                'Application\Model\LocationsMapper' =>  function($sm) {
+                    $tableGateway = $sm->get('LocationsTableGateway');
+                    $table = new LocationsTable($tableGateway, new \Zend\Db\Sql\Sql( $sm->get('Zend\Db\Adapter\Adapter') ) );
+                    return $table;
+                },
+                'LocationsTableGateway' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Location());
+                    return new TableGateway('locations', $dbAdapter, null, $resultSetPrototype);
+                },
+                'Application\Model\BuildingsMapper' =>  function($sm) {
+                    $tableGateway = $sm->get('BuildingsTableGateway');
+                    $table = new BuildingsTable($tableGateway, new \Zend\Db\Sql\Sql( $sm->get('Zend\Db\Adapter\Adapter') ) );
+                    return $table;
+                },
+                'BuildingsTableGateway' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Building());
+                    return new TableGateway('buildings', $dbAdapter, null, $resultSetPrototype);
                 },
             )
 

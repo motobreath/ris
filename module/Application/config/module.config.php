@@ -105,9 +105,8 @@ return array(
 
     'navigation' => array(
         'default' => array(
-
             array(
-                'label' => 'Template Home Page',
+                'label' => 'Room Search',
                 'route' => 'home',
             ),
         ),

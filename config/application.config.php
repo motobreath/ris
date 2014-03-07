@@ -18,7 +18,9 @@ return array(
         'Permissions',
         'Application',
         'Admin',
+        'Api',
         'EdpModuleLayouts'
+        
         ),
     'module_listener_options' => array(
         'module_paths' => array(

@@ -55,7 +55,6 @@ button, input, select, textarea { font-size: 100%; margin: 0; vertical-align: ba
 button, input { line-height: normal; }
 button, input[type="button"], input[type="reset"], input[type="submit"] { cursor: pointer; -webkit-appearance: button; *overflow: visible; }
 button[disabled], input[disabled] { cursor: default; }
-input[type="checkbox"], input[type="radio"] { box-sizing: border-box; padding: 0; *width: 13px; *height: 13px; }
 input[type="search"] { -webkit-appearance: textfield; -moz-box-sizing: content-box; -webkit-box-sizing: content-box; box-sizing: content-box; }
 input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; }
 button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
@@ -87,10 +86,10 @@ a{
     color:#4e76a6 !important;
 }
 h1,h2,h3,h4,h5,h6,legend{
-    color:#325e8d;
-    font-size:14pt;
+    color:#454545;
+    font-size:1.42em;
     font-family: 'Droid Serif',serif;
-    font-weight:normal;
+    font-weight:bold;
     margin:0;
     padding:10px 0;
 }
@@ -169,6 +168,7 @@ header nav a{
 
 header nav ul.navigation a:hover{
     background-color:#08203F;
+    text-decoration: none;
 }
 
 header #hdrSearch{
@@ -428,6 +428,7 @@ input{
     border: 1px solid #b5b5b5;
     padding:5px;
     float:left;
+    color:#444444;
 }
 
 label{
@@ -438,6 +439,28 @@ label{
     font-family: 'Droid Serif',serif;
     float:left;
     width:150px;
+    font-weight:normal;
+}
+
+label.checkbox-label{
+    padding-left:5px;
+    
+}
+
+ul.checkboxes, ul.checkboxes li{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+ul.checkboxes{
+    width:400px;
+    float:left;
+}
+
+ul.checkboxes li{
+    width:50%;
+    float:left;
 }
 
 textarea{
@@ -488,6 +511,19 @@ input.adminAdd{
     margin:0 0 0 10px;
 }
 
+#technology{
+    width:300px !important;
+}
+
+#searchForm .form-control{
+    width:200px;
+}
+
+.searchFormSubmit{
+    clear:both;
+    margin-top:20px;
+}
+
 /*end form styles*/
 
 #addAdmin{
@@ -504,6 +540,18 @@ aside.admin{
     margin-top:10px;
 }
 
+#searchLoading .modal-dialog{
+    width:200px;
+    margin:0 auto;
+    padding:0;
+    top:50%;
+}
+
+#searchLoading .modal-content{
+    width:200px;
+    padding:20px;
+    text-align:center;
+}
 
 @media only screen and (min-width: 35em) {
 
