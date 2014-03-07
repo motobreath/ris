@@ -1,0 +1,40 @@
+<p class="alert alert-danger" ng-show="searchError">{{searchError}}</p>
+<h1>Search for a Room</h1>
+<p>Use this form to search for meeting rooms.</p>
+<form id="searchForm" name="searchForm" ng-submit="submitForm()" novalidate data-ng-show="!searched" class="form-horizontal" >
+    <div data-locations-dropdown></div>
+    <label for="roomName">Room Name:</label>
+    <input type="text" id="roomName" class="form-control" ng-model="roomName" /><br />
+    <label for="capacity">Capacity:</label>
+    <select id="capacity" class="form-control" ng-model="capacity">
+        <option> - Select - </option>
+        <option>0-10</option>
+        <option>10-20</option>
+        <option>30-40</option>
+        <option>40-50</option>
+        <option>50+</option>
+    </select><br />
+    <label for="roomType">Room Type:</label>
+    <select id="roomType" class="form-control" ng-model="roomType">
+        <option> - Select - </option>
+    </select><br />
+    <label for="technology">Technology:</label>
+    <select id="technology" multiple="multiple" class="form-control" ng-model="technology">
+        <option value="capture">Capture</option>
+        <option value="Projector">Projector</option>
+        <option value="Microphone">Microphone</option>
+        <option value="Minion">Minion</option>
+    </select><br />
+    <button type="submit" class="btn btn-primary searchFormSubmit">Search</button>
+</form>
+
+<div class="modal fade loading" id="searchLoading" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      Searching <img src="/images/loading.gif" alt="searching" />
+    </div>
+  </div>
+</div>
+
+
+ 
