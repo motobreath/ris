@@ -1,5 +1,5 @@
 angular.module('ris.services',[])
-.service("Search",["$http",function($http){ 
+.service("Search",["$http",function($http){
         return {
             doSearch:function(searchData){
                 return $http.get("/search" + this.buildQueryString(searchData))
@@ -7,11 +7,11 @@ angular.module('ris.services',[])
             buildQueryString:function(searchData){
                 var queryString="?";
                 angular.forEach(searchData,function(value,key){
-                    if(typeof(value)==="undefined"){
+                    if(typeof(value)==="undefined" || value==""){
                         delete searchData[key];
                     }
                 })
-                if(searchData.technology.length===0){
+                if(searchData.technology && searchData.technology.length===0){
                     delete searchData["technology"];
                 }
                 angular.forEach(searchData,function(value,key){
@@ -27,23 +27,14 @@ angular.module('ris.services',[])
             }
             
         };
-        
-
 }])
-.service("Locations",["$http",function($http){
+.service("Room",["$http",function($http){
         return {
-            get:function(){
-                return $http.get("/locations");
-            }
-        }
-}])
-.service("Buildings",["$http",function($http){
-        return {
-            fetchAll:function(){
-                return $http.get("/buildings");
+            getRoom:function(roomID){
+               return $http.get("/room"+roomID,true); 
             },
-            getByLocation:function(location){
-                return $http.get("/buildings?location="+location);
+            fetchAll:function(){
+                
             }
-        }
+        };
 }]);

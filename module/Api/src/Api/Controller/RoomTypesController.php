@@ -5,14 +5,14 @@ namespace Api\Controller;
 use Zend\Mvc\Controller\AbstractRestfulController;
 use Zend\View\Model\JsonModel;
 
-class BuildingsController extends AbstractRestfulController
+class RoomTypesController extends AbstractRestfulController
 {
     
     private $mapper;
     
     public function getMapper() {
         if(null===$this->mapper){
-            $this->mapper=$this->getServiceLocator()->get("Application\Model\BuildingsMapper");
+            $this->mapper=$this->getServiceLocator()->get("Application\Model\RoomTypeMapper");
         }
         return $this->mapper;
     }
@@ -38,13 +38,9 @@ class BuildingsController extends AbstractRestfulController
 
     public function getList() {
         $mapper=$this->getMapper();
-        $params=array();
-        if($location=$this->params()->fromQuery("location")){
-            $params["locationID"]=$location;
-        }
-        $results=$mapper->fetchAll($params);
+        $results=$mapper->fetchAll();
         return new JsonModel(array(
-            "buildings"=>$results
+            "roomTypes"=>$results
         ));
     }
 

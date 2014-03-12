@@ -19,7 +19,8 @@ return array(
         'Application',
         'Admin',
         'Api',
-        'EdpModuleLayouts'
+        'EdpModuleLayouts',
+        "Search"
         
         ),
     'module_listener_options' => array(

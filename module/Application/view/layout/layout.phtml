@@ -11,7 +11,11 @@
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+    
     <link rel="stylesheet" href="/css/style.css">
+    
     <?php echo $this->headLink(); ?>
     <script src="/js/lib/modernizr-2.5.3.min.js"></script>
     </head>
@@ -65,21 +69,25 @@
         <?php //Any extra scripting done here ?>
         <?php //jquery ?>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/libs/jquery-1.8.2.min.js"><\/script>')</script>
         
         <?php //bootstrap ?>
         <script src="/js/lib/bootstrap.min.js"></script>
         
-        <?php //angular ?>
+        <?php //angular librar ?>
         <script src="/js/lib/angular/angular.js"></script>
         <script src="/js/lib/angular/angular-route.js"></script>
         <script src="/js/lib/angular/angular-animate.js"></script>
         <script src="/js/lib/angular/angular-resource.js"></script>
         
+        <?php //angular local files ?>
         <script src="/js/app.js"></script>
         <script src="/js/controllers.js"></script>
         <script src="/js/services.js"></script>
         <script src="/js/directives.js"></script>
+        <script src="/js/filters.js"></script>
+        
+        <?php //data tables ?>
+        <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.js"></script>
         
         <?php echo $this->headScript();?>
         

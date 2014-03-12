@@ -414,12 +414,12 @@ aside.admin nav a:hover{
 }
 
 /*Form Styles*/
-input,label, select, textarea {
+#searchForm input, #searchForm label, #searchForm select, #searchForm textarea {
     float:left;
     margin-bottom:10px;
 }
 
-input{
+#searchForm input{
     background:none;
     border:none;
     border-radius: 3px;
@@ -431,7 +431,7 @@ input{
     color:#444444;
 }
 
-label{
+#searchForm label{
     color:#325e8d;
     font-size:12pt;
     display:block;
@@ -547,14 +547,59 @@ aside.admin{
     top:50%;
 }
 
+#searchResults{
+    margin-top:20px;
+}
+
+
 #searchLoading .modal-content{
     width:200px;
     padding:20px;
     text-align:center;
 }
+#searchResultsTable_wrapper{
+    color:#555;
+    margin-top:5px;
+}
+table.dataTable thead th{
+    border-bottom:none;
+}
+
+#searchResultsTable tbody a{
+    text-decoration:underline;
+}
+
+#searchResultsTable tbody .sorting_1{
+    background-color:#F9F9F9;
+}
+
+#roomDetails{
+    line-height:20pt;
+}
+
+#roomDetails .modal-lg{
+    width:600px;
+}
+
+#roomDetails .modal-body{
+    padding-top:10px;
+}
+
+#roomDetails .details-img{
+    float:right;
+    margin:6px 8px 10px;
+    padding:5px;
+    border:1px solid #e5e5e5;
+    width:260px;
+    text-align: center;
+}
+
+.closeContainer{
+    text-align:center;
+    margin-top:20px;
+}
 
 @media only screen and (min-width: 35em) {
-
 
 }
 

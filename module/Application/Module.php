@@ -21,10 +21,23 @@ use Application\Model\Location;
 use Application\Model\LocationsTable;
 use Application\Model\Building;
 use Application\Model\BuildingsTable;
-
+use Application\Model\AdditionalImages;
+use Application\Model\AdditionalImagesTable;
+use Application\Model\RoomType;
+use Application\Model\RoomTypeTable;
+use Application\Model\Room;
+use Application\Model\RoomsTable;
+use Application\Model\Technology;
+use Application\Model\TechnologyTable;
 
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
+
+use Zend\Stdlib\Hydrator\ObjectProperty as ObjectPropertyHydrator;
+
+use Application\Hydrator\Strategy\RoomStrategy;
+use Application\Hydrator\RoomHydrator;
+use Zend\Db\ResultSet\HydratingResultSet;
 
 class Module
 {
@@ -119,6 +132,18 @@ class Module
                     $resultSetPrototype->setArrayObjectPrototype(new Location());
                     return new TableGateway('locations', $dbAdapter, null, $resultSetPrototype);
                 },
+                'Application\Model\RoomsMapper' =>  function($sm) {
+                    $tableGateway = $sm->get('RoomsTableGateway');
+                    $table = new RoomsTable($tableGateway, new \Zend\Db\Sql\Sql( $sm->get('Zend\Db\Adapter\Adapter') ) );
+                    return $table;
+                },
+                'RoomsTableGateway' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $hydrator=new RoomHydrator();
+                    //$hydrator->addStrategy("building", new RoomStrategy());
+                    $resultSetPrototype=new HydratingResultSet($hydrator,new Room());                    
+                    return new TableGateway('rooms', $dbAdapter, null, $resultSetPrototype);
+                },        
                 'Application\Model\BuildingsMapper' =>  function($sm) {
                     $tableGateway = $sm->get('BuildingsTableGateway');
                     $table = new BuildingsTable($tableGateway, new \Zend\Db\Sql\Sql( $sm->get('Zend\Db\Adapter\Adapter') ) );
@@ -129,6 +154,39 @@ class Module
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new Building());
                     return new TableGateway('buildings', $dbAdapter, null, $resultSetPrototype);
+                },
+                'Application\Model\RoomTypeMapper' =>  function($sm) {
+                    $tableGateway = $sm->get('RoomTypeTableGateway');
+                    $table = new RoomTypeTable($tableGateway, new \Zend\Db\Sql\Sql( $sm->get('Zend\Db\Adapter\Adapter') ) );
+                    return $table;
+                },
+                'RoomTypeTableGateway' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new RoomType());
+                    return new TableGateway('roomTypes', $dbAdapter, null, $resultSetPrototype);
+                },
+                'Application\Model\TechnologyMapper' =>  function($sm) {
+                    $tableGateway = $sm->get('TechnologyTableGateway');
+                    $table = new TechnologyTable($tableGateway, new \Zend\Db\Sql\Sql( $sm->get('Zend\Db\Adapter\Adapter') ) );
+                    return $table;
+                },
+                'TechnologyTableGateway' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Technology());
+                    return new TableGateway('technology', $dbAdapter, null, $resultSetPrototype);
+                },
+                'Application\Model\AdditionalImagesMapper' =>  function($sm) {
+                    $tableGateway = $sm->get('AdditionalImagesTableGateway');
+                    $table = new AdditionalImagesTable($tableGateway, new \Zend\Db\Sql\Sql( $sm->get('Zend\Db\Adapter\Adapter') ) );
+                    return $table;
+                },
+                'AdditionalImagesTableGateway' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Building());
+                    return new TableGateway('additionalImages', $dbAdapter, null, $resultSetPrototype);
                 },
             )
 

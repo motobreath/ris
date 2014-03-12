@@ -18,7 +18,7 @@
     text-align: left;
     white-space: nowrap;
     line-height: 36px;
-    color: #444;
+    color: #555555  ;
     text-decoration: none;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -46,12 +46,12 @@
 }
 
 .ms-choice > span.placeholder {
-    color: #999;
+    color: #555555;
 }
 
 .ms-choice > div {
     position: absolute;
-    top: 0;
+    top: 4px;
     right: 0;
     width: 20px;
     height: 25px;
